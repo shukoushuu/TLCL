@@ -14,7 +14,7 @@ efficient.
 
 开玩笑地说，我经常把 Unix 描述为“这个操作系统是为喜欢敲键盘的人们服务的。”
 当然，Unix 甚至还有一个命令行这件事证明了我所说的话。但是命令行用户不喜欢敲入
-那么多字。要不什么如此多的命令会有这样简短的命令名，像cp、ls、mv和 rm？事实上
+那么多字。要不为什么会有如此多的命令有这样简短的命令名，像cp、ls、mv和 rm？事实上
 ，命令行最为珍视的目标之一就是懒惰；用最少的击键次数来完成最多的工作。另一个
 目标是你的手指永远不必离开键盘，永不触摸鼠标。在这一章节，我们将看一下 bash 特性
 ，这些特性使键盘使用起来更加迅速，更加高效。
@@ -457,7 +457,7 @@ how to adjust this value in a later chapter. Let's say we want to find the comma
 used to list /usr/bin. One way we could do this:
 
 在默认情况下，bash 会存储你所输入的最后 500 个命令。在随后的章节里，我们会知道
-怎样调整这个数值。比方说我们想要找到列出目录 /usr/bin 内容的命令。一种方法，我们可以这样做：
+怎样调整这个数值。比方说我们想在自己曾经用过的命令中，找出和/usr/bin这一目录相关的。那么我们就可以这样做：
 
     [me@linuxbox ~]$ history | grep /usr/bin
 
@@ -472,8 +472,8 @@ The number “88” is the line number of the command in the history list. We co
 immediately using another type of expansion called history expansion. To use our
 discovered line we could do this:
 
-数字 "88" 是这个命令在历史列表中的行号。随后在使用另一种展开类型时，叫做
-历史命令展开，我们会用到这个数字。我们可以这样做，来使用我们所发现的行：
+数字 "88" 是这个命令在历史列表中的行号。我们可以使用另一种叫做
+历史命令展开的方式，来调用“88”所代表的这一行命令：
 
     [me@linuxbox ~]$ !88
 
@@ -490,11 +490,10 @@ list), type Ctrl-r again. To quit searching, type either Ctrl-g or Ctrl-c.
 Here we see it in action:
 
 bash 会把 "!88" 展开成为历史列表中88行的内容。还有其它的历史命令展开形式，我们一会儿
-讨论它们。bash 也具有按递增顺序来搜索历史列表的能力。这意味着随着字符的输入，我们
-可以告诉 bash 去搜索历史列表，每一个附加字符都进一步提炼我们的搜索。启动递增搜索，
-输入 Ctrl-r，其后输入你要寻找的文本。当你找到它以后，你可以敲入 Enter 来执行命令，
+讨论它们。bash 也具有增量搜索历史列表的能力。意思是在字符输入的同时，bash 会去搜索历史列表（直接出结果，并高亮匹配的第一个字），每多输入一个字符都会使搜索结果更接近目标。输入 Ctrl-r来启动增量搜索，
+接着输入你要寻找的字。当你找到它以后，你可以敲入 Enter 来执行命令，
 或者输入 Ctrl-j，从历史列表中复制这一行到当前命令行。再次输入 Ctrl-r，来找到下一个
-匹配项（向上移动历史列表）。输入 Ctrl-g 或者 Ctrl-c，退出搜索。实际来体验一下：
+匹配项（历史列表中向上移动）。输入 Ctrl-g 或者 Ctrl-c，退出搜索。现在看看它的实际效果：
 
     [me@linuxbox ~]$
 
@@ -508,25 +507,28 @@ The prompt changes to indicate that we are performing a reverse incremental sear
 “reverse” because we are searching from “now” to some time in the past. Next, we start
 typing our search text. In this example “/usr/bin”:
 
-提示符改变，显示我们正在执行反向递增搜索。搜索过程是"反向的"，因为我们按照从"现在"到过去
+提示符改变，显示我们正在执行反向增量搜索。搜索过程是"反向的"，因为我们按照从"现在"到过去
 某个时间段的顺序来搜寻。下一步，我们开始输入要查找的文本。在这个例子里是 "/usr/bin"：
 
     (reverse-i-search)`/usr/bin': ls -l /usr/bin > ls-output.txt
+
+> 上面这一行冒号后面的第一个"/"会高亮显示。
 
 Immediately, the search returns our result. With our result, we can execute the command
 by pressing Enter, or we can copy the command to our current command line for
 further editing by typing Ctrl-j. Let's copy it. Type Ctrl-j:
 
-即刻，搜索返回我们需要的结果。我们可以执行这个命令，按下 Enter 键，或者我们可以复制
-这个命令到我们当前的命令行，来进一步编辑它，输入 Ctrl-j。复制它，输入 Ctrl-j：
+即刻，搜索返回我们需要的结果。我们可以按下 Enter 键来执行这个命令，或者我们可以按下Ctrl-j复制
+这个命令到我们当前的命令行，来进一步编辑它。好了现在我们复制它，输入 Ctrl-j：
 
     [me@linuxbox ~]$ ls -l /usr/bin > ls-output.txt
 
 Our shell prompt returns and our command line is loaded and ready for action!
 The table below lists some of the keystrokes used to manipulate the history list:
 
-我们的 shell 提示符重新出现，命令行加载完毕，正准备行动！下表列出了一些按键组合，
-这些按键用来操作历史列表：
+我们的 shell 提示符重新出现，命令行加载完毕，准备接受下一命令！
+下表列出了一些按键组合，
+这些按键可以用来操作历史列表：
 
 <table class="multi">
 <caption class="cap">Table 9-5: History Commands</caption>
@@ -596,15 +598,15 @@ commands in the history list.</td>
 </tr>
 <tr>
 <td valign="top">Ctrl-r</td>
-<td valign="top">反向递增搜索。从当前命令行开始，向上递增搜索。</td>
+<td valign="top">反向增量搜索。从当前命令行开始，向上增量搜索。</td>
 </tr>
 <tr>
 <td valign="top">Alt-p</td>
-<td valign="top">反向搜索，不是递增顺序。输入要查找的字符串，然后按下 Enter，执行搜索。</td>
+<td valign="top">反向搜索，非增量搜索。（输入要查找的字符串，按下 Enter来执行搜索）。</td>
 </tr>
 <tr>
 <td valign="top">Alt-n</td>
-<td valign="top"> 向前搜索，非递增顺序。</td>
+<td valign="top"> 向前搜索，非增量。</td>
 </tr>
 <tr>
 <td valign="top">Ctrl-o</td>
@@ -620,7 +622,7 @@ number to insert an entry from the history list. There are a number of other exp
 features:
 
 通过使用 "!" 字符，shell 为历史列表中的命令，提供了一个特殊的展开类型。我们已经知道一个感叹号
-，其后再加上一个数字，可以把来自历史列表中的命令插入到命令行中。还有一些其它的展开特性：
+，其后再加上一个数字，可以把来自历史列表中的命令插入到命令行中。这里还有一些其它的展开特性：
 
 <table class="multi">
 <caption class="cap">Table 9-6: History Expansion Commands</caption>

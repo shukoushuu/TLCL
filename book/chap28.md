@@ -119,7 +119,7 @@ The shell provides two extremely simple builtin commands that do nothing except
 terminate with either a zero or one exit status. The true command always executes
 successfully and the false command always executes unsuccessfully:
 
-这个 shell 提供了两个极其简单的内部命令，它们不做任何事情，除了以一个零或1退出状态来终止执行。
+shell 提供了两个极其简单的内部命令，它们不做任何事情，除了以一个0或1退出状态来终止执行。
 True 命令总是执行成功，而 false 命令总是执行失败：
 
     [me@linuxbox~]$ true
@@ -779,7 +779,7 @@ arithmetic evaluations, a subject we will cover fully in Chapter 35.
 `(( ))` is used to perform arithmetic truth tests. An arithmetic truth test results in true if
 the result of the arithmetic evaluation is non-zero.
 
-`(( ))`被用来执行算术真测试。如果算术计算的结果是非零值，则一个算术真测试值为真。
+`(( ))`被用来执行算术真测试。如果算术计算的结果是非零值，则其测试值为真。
 
     [me@linuxbox ~]$ if ((1)); then echo "It is true."; fi
     It is true.
@@ -1051,12 +1051,12 @@ knowledge of if, we can solve the problem by adding this code to the
             cat <<- _EOF_
             <H2>Home Space Utilization (All Users)</H2>
             <PRE>$(du -sh /home/*)</PRE>
-            _EOF_
+	_EOF_
         else
             cat <<- _EOF_
             <H2>Home Space Utilization ($USER)</H2>
             <PRE>$(du -sh $HOME)</PRE>
-            _EOF_
+	_EOF_
         fi
         return
     }

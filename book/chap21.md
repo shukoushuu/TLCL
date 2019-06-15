@@ -131,7 +131,7 @@ text. Source code, the part of the program the programmer actually writes, is al
 text format.
 
 在类 Unix 系统中会发现许多命令行程序被用来支持系统管理和软件开发，并且文本处理程序也不例外。
-许多文本处理程序被设计用来解决软件开发问题。文本处理对于软件开发者来言至关重要是因为所有的软件
+许多文本处理程序被设计用来解决软件开发问题。文本处理对于软件开发者而言至关重要是因为所有的软件
 都起始于文本格式。源代码，程序员实际编写的一部分程序，总是文本格式。
 
 ### 回顾一些老朋友
@@ -366,7 +366,7 @@ separated by spaces or tabs.</td>
 <tr>
 <td valign="top">-n</td>
 <td valign="top">--numeric-sort</td>
-<td valign="top">基于字符串的长度来排序。使用此选项允许根据数字值执行排序，而不是字母值。</td>
+<td valign="top">基于字符串的数值来排序。使用此选项允许根据数字值执行排序，而不是字母值。</td>
 </tr>
 <tr>
 <td valign="top">-r</td>
@@ -660,7 +660,7 @@ trivial task. When given a sorted file (including standard input), it removes an
 lines and sends the results to standard output. It is often used in conjunction with sort
 to clean the output of duplicates.
 
-与 sort 程序相比，这个 uniq 程序是个轻量级程序。uniq 执行一个看似琐碎的认为。当给定一个
+与 sort 程序相比，这个 uniq 程序是个轻量级程序。uniq 执行一个看似琐碎的行为。当给定一个
 排好序的文件（包括标准输出），uniq 会删除任意重复行，并且把结果发送到标准输出。
 它常常和 sort 程序一块使用，来清理重复的输出。
 
@@ -778,7 +778,7 @@ no option for setting an alternate field separator.</td>
 </tr>
 <tr>
 <td valign="top">-u</td>
-<td valign="top">只是输出独有的文本行。这是默认的。</td>
+<td valign="top">只输出独有的文本行。这是默认的。</td>
 </tr>
 </table>
 
@@ -1696,7 +1696,7 @@ the possible twenty-six characters, performing the algorithm a second time on th
 text restores it to its original form. To perform this encoding with tr:
 >
 > tr 命令的一个有趣的用法是执行 ROT13文本编码。ROT13是一款微不足道的基于一种简易的替换暗码的
-加密类型。把 ROT13称为“加密”是大方的；“文本模糊处理”更准确些。有时候它被用来隐藏文本中潜在的攻击内容。
+加密类型。把 ROT13称为“加密”是过誉了；称其为“文本模糊处理”则更准确些。有时候它被用来隐藏文本中潜在的攻击内容。
 这个方法就是简单地把每个字符在字母表中向前移动13位。因为移动的位数是可能的26个字符的一半，
 所以对文本再次执行这个算法，就恢复到了它最初的形式。通过 tr 命令来执行这种编码：
 >
@@ -1749,9 +1749,7 @@ The name sed is short for stream editor. It performs text editing on a stream of
 either a set of specified files or standard input. sed is a powerful and somewhat complex
 program (there are entire books about it), so we will not cover it completely here.
 
-名字 sed 是 stream editor（流编辑器）的简称。它对文本流进行编辑，要不是一系列指定的文件，
-要不就是标准输入。sed 是一款强大的，并且有些复杂的程序（有整本内容都是关于 sed 程序的书籍），
-所以在这里我们不会详尽的讨论它。
+名字 sed 是 stream editor（流编辑器）的简称。它对文本流，即一系列指定的文件或标准输入进行编辑。sed 是一款强大的，并且有些复杂的程序（有整本内容都是关于 sed 程序的书籍），所以在这里我们不会详尽的讨论它。
 
 In general, the way that sed works is that it is given either a single editing command (on
 the command line) or the name of a script file containing multiple commands, and it then
@@ -2143,9 +2141,9 @@ _replacement_ where n is a number from one to nine, the sequence will refer to t
 corresponding subexpression in the preceding regular expression. To create the subexpressions,
 we simply enclose them in parentheses like so:
 
-此表达式匹配两位数字，一个斜杠，两位数字，一个斜杠，四位数字，以及行尾。如此关心_regexp_，
-那么_replacement_又怎样呢？为了解决此问题，我们必须介绍一个正则表达式的新功能，它出现
-在一些使用 BRE 的应用程序中。这个功能叫做_逆参照_，像这样工作：如果序列\n 出现在_replacement_中
+此表达式匹配两位数字，一个斜杠，两位数字，一个斜杠，四位数字，以及行尾。如此关心 __regexp__，
+那么 __replacement__ 又怎样呢？为了解决此问题，我们必须介绍一个正则表达式的新功能，它出现
+在一些使用 BRE 的应用程序中。这个功能叫做 __逆参照__ ，像这样工作：如果序列 `\n` 出现在 __replacement__ 中
 ，这里 n 是指从 1 到 9 的数字，则这个序列指的是在前面正则表达式中相对应的子表达式。为了
 创建这个子表达式，我们简单地把它们用圆括号括起来，像这样：
 
@@ -2156,7 +2154,7 @@ day of the month, and the third contains the year. Now we can construct replacem
 follows:
 
 现在我们有了三个子表达式。第一个表达式包含月份，第二个包含某月中的某天，以及第三个包含年份。
-现在我们就可以构建_replacement_，如下所示：
+现在我们就可以构建 __replacement__ ，如下所示：
 
     \3-\1-\2
 
@@ -2165,6 +2163,7 @@ which gives us the year, a dash, the month, a dash, and the day.
 此表达式给出了年份，一个短划线，月份，一个短划线，和某天。
 
 Now, our command looks like this:
+现在我们的命令看起来像下面这样：
 
     sed 's/([0-9]{2})/([0-9]{2})/([0-9]{4})$/\3-\1-\2/' distros.txt
 
@@ -2175,10 +2174,9 @@ our regular expression will be taken as literals, rather than as metacharacters.
 solve both these problems with a liberal application of backslashes to escape the
 offending characters:
 
-我们还有两个问题。第一个是在我们表达式中额外的斜杠将会迷惑 sed，当 sed 试图解释这个 s 命令
-的时候。第二个是因为 sed，默认情况下，只接受基本的正则表达式，在表达式中的几个字符会
-被当作文字字面值，而不是元字符。我们能够解决这两个问题，通过反斜杠的自由应用来转义
-令人不快的字符：
+我们还有两个问题。第一个是当 sed 试图解释这个 s 命令的时候在我们表达式中额外的斜杠将会使 sed 迷惑。
+第二个是由于sed默认情况下只接受基本的正则表达式，在表达式中的几个字符会
+被当作文字字面值，而不是元字符。我们能够通过反斜杠的自由应用来转义令人不快的字符解决这两个问题，：
 
     sed 's/\([0-9]\{2\}\)\/\([0-9]\{2\}\)\/\([0-9]\{4\}\)$/\3-\1-\2/' distros.txt
 
@@ -2220,9 +2218,11 @@ and enter the following:
 大写的发行版名称为特征。为此，我们需要编写一个脚本，所以我们将打开文本编辑器，然后输入以下文字：
 
     # sed script to produce Linux distributions report
+    
     1 i\
     \
     Linux Distributions Report\
+    
     s/\([0-9]\{2\}\)\/\([0-9]\{2\}\)\/\([0-9]\{4\}\)$/\3-\1-\2/
     y/abcdefghijklmnopqrstuvwxyz/ABCDEFGHIJKLMNOPQRSTUVWXYZ/
 
@@ -2537,7 +2537,7 @@ behavior can be overridden with command line options. It is also possible to
 specify which markup tags are checked and skipped. See the aspell man page
 for details.
 
-注意：默认情况下，aspell 会忽略文本中 URL 和电子邮件地址。通过命令行选项，可以重写此行为。
+注意：默认情况下，aspell 会忽略文本中的 URL 和电子邮件地址。通过命令行选项，可以重写此行为。
 也有可能指定哪些标志进行检查及跳过。详细内容查看 aspell 命令手册。
 
 ---

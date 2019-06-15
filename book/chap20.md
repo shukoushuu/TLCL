@@ -24,7 +24,7 @@ What Are Regular Expressions?
 
 我们已经浏览了许多由命令行提供的功能和工具，我们遇到了一些真正神秘的 shell 功能和命令，
 比如 shell 展开和引用、键盘快捷键和命令历史，更不用说 vi 编辑器了。正则表达式延续了
-这种“传统”，而且有可能（备受争议地）是其中最神秘的功能。这并不是说花费时间来学习它们
+这种“传统”，而且有可能（备受争议地）是这些‘神秘功能’中最神秘的那个。这并不是说花费时间来学习它们
 是不值得的，而是恰恰相反。虽然它们的全部价值可能不能立即显现，但是较强理解这些功能
 使我们能够表演令人惊奇的技艺。什么是正则表达式？
 
@@ -140,8 +140,7 @@ be specified --no-filename. </td>
 </tr>
 <tr>
 <td valign="top">-v</td>
-<td valign="top">不匹配。通常，grep 程序会打印包含匹配项的文本行。这个选项导致 grep 程序
-只会不包含匹配项的文本行。也可用--invert-match 来指定。 </td>
+<td valign="top">不匹配。通常，grep 程序会打印包含匹配项的文本行。这个选项导致 grep 程序只会打印不包含匹配项的文本行。也可用--invert-match 来指定。 </td>
 </tr>
 <tr>
 <td valign="top">-c</td>
@@ -207,7 +206,7 @@ could do this:
     dirlist-usr-bin.txt
     dirlist-usr-sbin.txt
 
-### 元字符和文本
+### 元字符和原义字符(Metacharacters And Literals)
 
 While it may not seem apparent, our grep searches have been using regular expressions
 all along, albeit very simple ones. The regular expression “bzip” is taken to mean that a
@@ -220,7 +219,7 @@ Regular expression metacharacters consist of the following:
 
 它可能看起来不明显，但是我们的 grep 程序一直使用了正则表达式，虽然是非常简单的例子。
 这个正则表达式“bzip”意味着，匹配项所在行至少包含4个字符，并且按照字符 “b”、“z”、 “i” 和 “p”的顺序
-出现在匹配行的某处，字符之间没有其它的字符。字符串“bzip”中的所有字符都是原义字符，因为
+出现在匹配行的某处，字符之间没有其它的字符。字符串“bzip”中的所有字符都是原义字符，因此
 它们匹配本身。除了原义字符之外，正则表达式也可能包含元字符，其被用来指定更复杂的匹配项。
 正则表达式元字符由以下字符组成：
 
@@ -230,8 +229,8 @@ All other characters are considered literals, though the backslash character is 
 few cases to create meta sequences, as well as allowing the metacharacters to be escaped
 and treated as literals instead of being interpreted as metacharacters.
 
-然后其它所有字符都被认为是原义字符，虽然在个别情况下，反斜杠会被用来创建元序列，
-也允许元字符被转义为原义字符，而不是被解释为元字符。
+其它所有字符都被认为是原义字符。在个别情况下，反斜杠会被用来创建元序列，
+元字符也可以被转义为原义字符，而不是被解释为元字符。
 
 ---
 
@@ -279,7 +278,7 @@ because the period character in the file extension is treated as “any characte
 
 我们在文件中查找包含正则表达式“.zip”的文本行。对于搜索结果，有几点需要注意一下。
 注意没有找到这个 zip 程序。这是因为在我们的正则表达式中包含的圆点字符把所要求的匹配项的长度
-增加到四个字符，并且字符串“zip”只包含三个字符，所以这个 zip 程序不匹配。另外，如果我们的文件列表
+增加到四个字符，并且因为字符串“zip”只包含三个字符，所以这个 zip 程序不匹配。另外，如果我们的文件列表
 中有一些文件的扩展名是.zip，则它们也会成为匹配项，因为文件扩展名中的圆点符号也会被看作是
 “任意字符”。
 
@@ -386,7 +385,7 @@ is used to indicate a character range.
 
 一个字符集合可能包含任意多个字符，并且元字符被放置到中括号里面后会失去了它们的特殊含义。
 然而，在两种情况下，会在中括号表达式中使用元字符，并且有着不同的含义。第一个元字符
-是插入字符，其被用来表示否定；第二个是连字符字符，其被用来表示一个字符范围。
+是插入字符（^），其被用来表示否定；第二个是连字符字符（-），其被用来表示一个字符范围。
 
 ### 否定
 
@@ -394,7 +393,7 @@ If the first character in a bracket expression is a caret (^), the remaining cha
 taken to be a set of characters that must not be present at the given character position. We
 do this by modifying our previous example:
 
-如果在中括号表示式中的第一个字符是一个插入字符，则剩余的字符被看作是不会在给定的字符位置出现的
+如果在中括号表示式中的第一个字符是一个插入字符（^），则剩余的字符被看作是不会在给定的字符位置出现的
 字符集合。通过修改之前的例子，我们试验一下：
 
     [me@linuxbox ~]$ grep -h '[^bg]zip' dirlist*.txt
@@ -523,8 +522,7 @@ empty list. This example is from Ubuntu) This command produces the expected resu
 with this command we get an entirely different result (only a partial listing of the results
 is shown). Why is that? It’s a long story, but here’s the short version:
 
-通过这个命令我们得到整个不同的结果（只显示了一部分结果列表）。为什么会是那样？
-说来话长，但是这个版本比较简短：
+通过这个命令我们得到完全不同的结果（只列出了部分结果）。原因说来话长，简单来说就是：
 
 Back when Unix was first developed, it only knew about ASCII characters, and this
 feature reflects that fact. In ASCII, the first thirty-two characters (numbers 0-31) are
@@ -535,11 +533,7 @@ letters and a few more punctuation symbols. The final thirty-one (numbers 96-127
 contain the lowercase letters and yet more punctuation symbols. Based on this
 arrangement, systems using ASCII used a `collation order` that looked like this:
 
-追溯到 Unix 刚刚开发的时候，它只知道 ASCII 字符，并且这个特性反映了事实。在 ASCII 中，前32个字符
-（数字0－31）都是控制码（如 tabs、backspaces和回车）。随后的32个字符（32－63）包含可打印的字符，
-包括大多数的标点符号和数字0到9。再随后的32个字符（64－95）包含大写字符和一些更多的标点符号。
-最后的31个字符（96－127）包含小写字母和更多的标点符号。基于这种安排方式，系统使用这种排序规则
-的 ASCII：
+追溯到 Unix 刚刚开发的时候，它只知道 ASCII 字符，并且Unix特性也如实反映了这一事实。在 ASCII 中，前32个字符（数字0－31）都是控制码（如 tabs、backspaces和回车）。随后的32个字符（32－63）包含可打印的字符，包括大多数的标点符号和数字0到9。再随后的32个字符（64－95）包含大写字符和一些更多的标点符号。最后的31个字符（96－127）包含小写字母和更多的标点符号。基于这种安排方式，使用ASCII的系统的排序规则像下面这样：
 
     ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz
 
@@ -553,16 +547,13 @@ As the popularity of Unix spread beyond the United States, there grew a need to 
 characters not found in U.S. English. The ASCII table was expanded to use a full eight
 bits, adding characters numbers 128-255, which accommodated many more languages.
 
-随着 Unix 系统的知名度在美国之外的国家传播开来，就需要支持不在 U.S.英语范围内的字符。
-于是就扩展了这个 ASCII 字符表，使用了整个8位，添加了字符（数字128－255），这样就
-容纳了更多的语言。
+随着 Unix 系统的知名度在美国之外的国家传播开来，就需要支持不在 U.S.英语范围内的字符。于是就扩展了这个 ASCII 字符表，使用了整个8位，添加了字符（数字128－255），这样就容纳了更多的语言。
 
 To support this ability, the POSIX standards introduced a concept called a locale, which
 could be adjusted to select the character set needed for a particular location. We can see
 the language setting of our system using this command:
 
-为了支持这种能力，POSIX 标准介绍了一种叫做 locale 的概念，其可以被调整，来为某个特殊的区域，
-选择所需的字符集。通过使用下面这个命令，我们能够查看到我们系统的语言设置：
+为了支持这种功能，posix标准引入了"locale"概念，它能针对不同地区选择合适的字符集。：
 
     [me@linuxbox ~]$ echo $LANG
     en_US.UTF-8
@@ -572,15 +563,13 @@ rather than ASCII order. This explains the behavior of the commands above. A cha
 range of [A-Z] when interpreted in dictionary order includes all of the alphabetic
 characters except the lowercase “a”, hence our results.
 
-通过这个设置，POSIX 相容的应用程序将会使用字典排列顺序而不是 ASCII 顺序。这就解释了上述命令的行为。
-当[A-Z]字符区域按照字典顺序解释的时候，包含除了小写字母“a”之外的所有字母，因此得到这样的结果。
+通过这个设置，POSIX 相容的应用程序将会使用字典排列顺序而不是 ASCII 顺序。这就解释了上述命令的行为。当[A-Z]字符区域按照字典顺序解释的时候，包含除了小写字母“a”之外的所有字母，因此得到这样的结果。
 
 To partially work around this problem, the POSIX standard includes a number of
 character classes which provide useful ranges of characters. They are described in the
 table below:
 
-为了部分地解决这个问题，POSIX 标准包含了大量的字符集，其提供了有用的字符区域。
-下表中描述了它们：
+为了部分地解决这个问题，POSIX 标准包含了大量的字符集，其提供了有用的字符区域。如下表中所示：
 
 <table class="multi">
 <caption class="cap">Table 20-2: POSIX Character Classes </caption>
@@ -623,7 +612,7 @@ through thirty-one and 127.  </td>
 </tr>
 <tr>
 <td valign="top">[:punct:] </td>
-<td valign="top">The punctuation characters. In ASCII, equivalent to:
+<td valign="top">The punctuation characters. In ASCII, equivalent to:[-!"#$%&'()*+,./:;<=>?@[\\\]_`{|}~]
 </td>
 </tr>
 <tr>
@@ -688,7 +677,7 @@ equivalent to: [0-9A-Fa-f] </td>
 </tr>
 <tr>
 <td valign="top">[:punct:] </td>
-<td valign="top">标点符号字符。在 ASCII 中，等价于：</td>
+<td valign="top">标点符号字符。在 ASCII 中，等价于：[-!"#$%&'()*+,./:;<=>?@[\\\]_`{|}~]</td>
 </tr>
 <tr>
 <td valign="top">[:print:] </td>
@@ -793,7 +782,7 @@ ASCII) for its character set, so be sure if this is really what you want.
 >
 >  _export LANG=POSIX_
 
-### POSIX 基本的 Vs.扩展的正则表达式
+### POSIX基本正则表达式 与 POSIX扩展正则表达式
 
 Just when we thought this couldn’t get any more confusing, we discover that POSIX also
 splits regular expression implementations into two kinds: basic regular expressions
@@ -834,7 +823,7 @@ the GNU version of grep also supports extended regular expressions when the -E
 option is used.
 
 因为我们将要讨论的下一个特性是 ERE 的一部分，我们将要使用一个不同的 grep 程序。照惯例，
-一直由 egrep 程序来执行这项操作，但是 GUN 版本的 grep 程序在使用了-E 选项之后也支持扩展的正则表达式。
+一直由 egrep 程序来执行这项操作，但是 GNU 版本的 grep 程序在使用了-E 选项之后也支持扩展的正则表达式。
 
 > POSIX
 >
@@ -872,7 +861,7 @@ Stallman), and was adopted by the IEEE.
 操作系统中找到。“POSIX” 这个名字，象征着可移植的操作系统接口（为了时髦一点，添加了末尾的 “X” ），
 是由 Richard Stallman 建议的（ 是的，的确是 Richard Stallman ），后来被 IEEE 采纳。
 
-### Alternation
+### 交替
 
 The first of the extended regular expression features we will discuss is called alternation,
 which is the facility that allows a match to occur from among a set of expressions. Just
@@ -980,14 +969,11 @@ Let’s try it:
 
 让我们试一下：
 
-    [me@linuxbox ~]$ echo "(555) 123-4567" | grep -E '^\(?[0-9][0-9][0-9]
-    \)? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
+    [me@linuxbox ~]$ echo "(555) 123-4567" | grep -E '^\(?[0-9][0-9][0-9]\)? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
     (555) 123-4567
-    [me@linuxbox ~]$ echo "555 123-4567" | grep -E '^\(?[0-9][0-9][0-9]\)
-    ? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
+    [me@linuxbox ~]$ echo "555 123-4567" | grep -E '^\(?[0-9][0-9][0-9]\)? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
     555 123-4567
-    [me@linuxbox ~]$ echo "AAA 123-4567" | grep -E '^\(?[0-9][0-9][0-9]\)
-    ? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
+    [me@linuxbox ~]$ echo "AAA 123-4567" | grep -E '^\(?[0-9][0-9][0-9]\)? [0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]$'
     [me@linuxbox ~]$
 
 Here we see that the expression matches both forms of the phone number, but does not
@@ -1162,8 +1148,7 @@ not. We will get there in future chapters. Here is the incantation:
 它会很神奇，因为我们还没有涵盖所涉及的大部分命令，但是不要担心。我们将在后面的章节里面
 讨论那些命令。这就是那个咒语：
 
-    [me@linuxbox ~]$ for i in {1..10}; do echo "(${RANDOM:0:3}) ${RANDO
-    M:0:3}-${RANDOM:0:4}" >> phonelist.txt; done
+    [me@linuxbox ~]$ for i in {1..10}; do echo "(${RANDOM:0:3}) ${RANDOM:0:3}-${RANDOM:0:4}" >> phonelist.txt; done
 
 This command will produce a file named phonelist.txt containing ten phone
 numbers. Each time the command is repeated, another ten numbers are added to the list.
@@ -1171,9 +1156,7 @@ We can also change the value 10 near the beginning of the command to produce mor
 fewer phone numbers. If we examine the contents of the file, however, we see we have a
 problem:
 
-这个命令会创建一个包含10个电话号码的名为 phonelist.txt 的文件。每次重复这个命令的时候，
-另外10个号码会被添加到这个列表中。我们也能够更改命令开头附近的数值10，来生成或多或少的
-电话号码。如果我们查看这个文件的内容，然而我们会发现一个问题：
+这个命令会创建一个包含10个电话号码的名为 phonelist.txt 的文件。每次重复这个命令的时候，另外10个号码会被添加到这个列表中。我们也能够更改命令开头附近的数值10，来生成或多或少的电话号码。如果我们查看这个文件的内容，然而我们会发现一个问题：
 
     [me@linuxbox ~]$ cat phonelist.txt
     (232) 298-2265
@@ -1190,15 +1173,14 @@ problem:
 Some of the numbers are malformed, which is perfect for our purposes, since we will use
 grep to validate them.
 
-一些号码是残缺不全的，但是它们很适合我们的需求，因为我们将使用 grep 命令来验证它们。
+一些号码是残缺不全的，这正是我们想要的，因为我们将使用 grep 命令来验证电话号码的正确性。
 
 One useful method of validation would be to scan the file for invalid numbers and display
 the resulting list on the display:
 
 一个有用的验证方法是扫描这个文件，查找无效的号码，并把搜索结果显示到屏幕上：
 
-    [me@linuxbox ~]$ grep -Ev '^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$'
-    phonelist.txt
+    [me@linuxbox ~]$ grep -Ev '^\([0-9]{3}\) [0-9]{3}-[0-9]{4}$'    phonelist.txt
     (292) 108-518
     (129) 44-1379
     [me@linuxbox ~]$

@@ -8,9 +8,9 @@ many Linux distributions is "best." Often, these discussions get really silly, f
 such things as the prettiness of the desktop background (some people won't use Ubuntu
 because its default color scheme is brown!) and other trivial matters.
 
-如果我们花些时间在 Linux 社区里，我们会得知很多针对, 类如在众多 Linux 发行版中哪个是最好的(等问题的)看法。
-这些集中在像这些事情上的讨论，比方说最漂亮的桌面背景（一些人不使用 Ubuntu，
-只是因为 Ubuntu 默认主题颜色是棕色的！）和其它的琐碎东西，经常变得非常无聊。
+如果我们花些时间在 Linux 社区里，我们会看到很多像Linux发行版中哪一个是“最佳”之类的观点。
+这些讨论通常非常可笑，集中在一些像桌面背景的漂亮程度（一些人不使用 Ubuntu，
+只是因为 Ubuntu 默认主题颜色是棕色的！）和其它的琐碎东西上。
 
 The most important determinant of distribution quality is the packaging system and the
 vitality of the distribution's support community. As we spend more time with Linux, we
@@ -20,7 +20,7 @@ individual program updates every day. To keep up with this blizzard of software,
 need good tools for package management.
 
 Linux 发行版本质量最重要的决定因素是软件包管理系统和其支持社区的持久性。随着我们
-花更多的时间在 Linux 上，我们会发现它的软件园地是非常动态的。软件不断变化。大多数一线
+花更多的时间在 Linux 上，我们会发现它的变化是非常快的。大多数一线
 Linux 发行版每隔六个月发布一个新版本，并且许多独立的程序每天都会更新。为了能和这些
 如暴风雪一般多的软件保持联系，我们需要一些好工具来进行软件包管理。
 
@@ -38,9 +38,9 @@ command line programs, too. They can perform many tasks that are difficult (or
 impossible) to do with their graphical counterparts.
 
 软件包管理是指系统中一种安装和维护软件的方法。今天，通过从 Linux 发行版中安装的软件包，
-已能满足许多人所有需要的软件。这不同于早期的 Linux，人们需要下载和编译源码来安装软件。
+已能满足许多人所有的软件需求。这不同于早期的 Linux，人们需要下载和编译源码来安装软件。
 编译源码没有任何问题，事实上，拥有对源码的访问权限是 Linux 的伟大奇迹。它赋予我们（
-其它每个人）才干来检测和提高系统性能。只是若有一个预先编译好的软件包处理起来要相对
+其它每个人）检测和提高系统性能的能力。只是若有一个预先编译好的软件包处理起来要相对
 容易快速些。这章中，我们将查看一些用于包管理的命令行工具。虽然所有主流 Linux 发行版都
 提供了强大且精致的图形管理程序来维护系统，但是学习命令行程序也非常重要。因为它们
 可以完成许多让图形化管理程序处理起来困难（或者不可能）的任务。
@@ -96,8 +96,8 @@ The method of software distribution found in the proprietary software industry u
 entails buying a piece of installation media such as an "install disk" and then running an
 "installation wizard" to install a new application on the system.
 
-在专有软件产业中找到的软件发布方法通常需要买一张安装媒介，比方说"安装盘"，然后运行
-"安装向导"，来在系统中安装新的应用程序。
+在商业化软件中，获取软件的最新版本通常需要买一张安装媒介，比方说"安装盘"，然后运行
+一个"安装向导"，来在系统中安装新的应用程序。
 
 Linux doesn't work that way. Virtually all software for a Linux system will be found on
 the Internet. Most of it will be provided by the distribution vendor in the form of
@@ -132,7 +132,7 @@ Often, the package maintainer will apply modifications to the original source co
 improve the program's integration with the other parts of the Linux distribution.
 
 软件包文件是由软件包维护者创建的，他通常是（但不总是）一名软件发行商的雇员。软件维护者
-从上游提供商（程序作者）那里得到软件源码，然后编辑源码，创建软件包元数据以及所需要的
+从上游提供商（程序作者）那里得到软件源码，然后编译源码，创建软件包元数据以及所需要的
 安装脚本。通常，软件包维护者要把所做的修改应用到最初的源码当中，来提高此软件与 Linux
 发行版其它部分的融合性。
 
@@ -171,13 +171,13 @@ configuration files for the package management system.
 
 一个系统发行版可能也会拥有相关第三方的资源库。这些资源库需要支持一些因法律原因，
 比如说专利或者是 DRM 反规避问题，而不能被包含到发行版中的软件。可能最著名的案例就是
-那个加密的 DVD 支持，在美国这是不合法的。第三方资源库在这些软件专利和反规避法案不
-生效的国家中起作用。这些资源库通常完全地独立于它们所支持的资源库，要想使用它们，
+对加密DVD的播放支持，在美国这是不合法的。第三方资源库在一些软件专利和反规避法案不
+生效的国家中设立并分发资源。这些资源库通常完全地独立于它们所支持的资源库，要想使用它们，
 你必须了解它们，手动地把它们包含到软件包管理系统的配置文件中。
 
 ### 依赖性
 
-Programs seldom “standalone;” rather they rely on the presence of other software
+Programs seldom stand alone; rather, they rely on the presence of other software
 components to get their work done. Common activities, such as input/output for
 example, are handled by routines shared by many programs. These routines are stored in
 what are called shared libraries, which provide essential services to more than one
@@ -186,11 +186,11 @@ have a dependency. Modern package management systems all provide some method of
 dependency resolution to ensure that when a package is installed, all of its dependencies
 are installed, too.
 
-程序很少是"孤立的"，而是依赖于其它软件组件来完成它们的工作。常见活动，以
-输入/输出为例，就是由共享程序例程来处理的。这些程序例程存储在共享库中，共享库不只
-为一个程序提供基本服务。如果一个软件包需要共享资源，比如说共享库，据说就有一个依赖。
-现代的软件包管理系统都提供了一些依赖项解析方法，以此来确保当安装软件包时，也安装了
-其所有的依赖程序。
+程序很少独立工作；他们需要依靠其他程序的组件来完成他们的工作。程序所共有的活动，如输入/输出，
+就是由一个被多个程序调用的子例程处理的。这些子例程存储在动态链接库中。动态链接库为多个程
+序提供基本服务。如果一个软件包需要一些共享的资源，如一个动态链接库，它就被称作有一个依赖。
+现代的软件包管理系统都提供了一些依赖项解析方法，以确保安装软件包时，其所有的依赖也被安装。
+
 
 ### 上层和底层软件包工具
 
@@ -208,8 +208,8 @@ features.
 和上层工具，完成元数据搜索和依赖解析。在这一章中，我们将看一下由 Debian 风格的系统
 （比如说 Ubuntu，还有许多其它系统）提供的工具，还有那些由 Red
 Hat 产品使用的工具。虽然所有基于 Red Hat 风格的发行版都依赖于相同的底层程序（rpm）,
-但是它们却使用不同的上层工具。我们将研究上层程序 yum 供我们讨论，Fedora, Red
-Hat 企业版，和 CentOs 都是使用 yum。其它基于 Red Hat 风格的发行版提供了带有可比较特性的上层工具。
+但是它们却使用不同的上层工具。在我们的讨论中，我们将研究Fedora, Red
+Hat 企业版，和 CentOs所使用的 yum 。其它Red Hat 风格的发行版提供了带有类似yum的其他上层工具。
 
 <table class="multi">
 <caption class="cap">Table15- 2: Packaging System Tools</caption>
@@ -746,7 +746,7 @@ management, we should have no problem installing and managing the programs we ne
 
 在随后的章节里面，我们将探讨许多不同的程序，这些程序涵盖了广泛的应用程序领域。虽然
 大多数程序一般是默认安装的，但是若所需程序没有安装在系统中，那么我们可能需要安装额外的软件包。
-通过我们新学到的（和了解的）软件包管理知识，我们应该在安装和管理所需的程序方面没有问题。
+通过我们新学到的（和了解的）软件包管理知识，我们应该能够安装和管理所需程序。
 
 > The Linux Software Installation Myth
 >
@@ -785,8 +785,8 @@ by one of three things:
 >
 > 设备驱动差不多也以同样的方式来处理，但它们不是系统发行版资源库中单独的项目，
 它们本身是 Linux 系统内核的一部分。一般来说，在 Linux 当中没有一个类似于“驱动盘”的东西。
-要不内核支持一个设备，要不不支持，反正 Linux 内核支持很多设备，事实上，多于 Windows
-所支持的设备数目。当然，如果你需要的特定设备不被支持，这里也没有安慰。当那种情况
+Linux内核要么支持一个设备，要不就不支持。Linux 内核支持很多设备，事实上，Linux支持的设备数目多于 Windows
+所支持的。当然，万一你需要的特定设备不被Linux支持，也于事无补。当那种情况
 发生时，你需要查找一下原因。缺少驱动程序支持通常是由以下三种情况之一导致：
 >
 > 1. _The device is too new._ Since many hardware vendors don't actively support
@@ -821,7 +821,7 @@ items.
 > 1. _硬件供应商隐藏信息。_ 他们既不发布应用于 Linux 系统的驱动程序代码，
 也不发布技术文档来让某人创建它。这意味着硬件供应商试图保密此设备的程序接口。因为我们
 不想在计算机中使用保密的设备，所以我建议删除这令人厌恶的硬件，
-把它和其它无用的东西都仍到垃圾桶里。
+把它和其它无用的东西都扔到垃圾桶里。
 
 ### 拓展阅读
 

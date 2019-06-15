@@ -28,8 +28,8 @@ system, for example, consisted of a large central computer located in one buildi
 terminals which were located throughout the campus, each connected to the large central
 computer. The computer would support many users at the same time.
 
-Linux 系统的多用户性能，不是最近的“创新”，而是一种特性，它深深地嵌入到了 Linux 操作系统的
-设计过程中。想一下 Unix 系统的诞生环境，这会很有意义。多年前，在个人电脑出现之前，计算机
+Linux 系统的多用户性能，不是最近的“创新”，而是一种深深地嵌入到了 Linux 操作系统的
+设计中的特性。想想 Unix 系统的诞生环境，这一点就很好理解了。多年前，在个人电脑出现之前，计算机
 都是大型、昂贵的、集中化的。例如一个典型的大学计算机系统，是由坐落在一座建筑中的一台
 大型中央计算机和许多散布在校园各处的终端机组成，每个终端都连接到这台大型中央计算机。
 这台计算机可以同时支持很多用户。
@@ -420,8 +420,8 @@ and thus do all their counting in binary (base 2). Their number system only
 has two numerals, zero and one. So in binary, counting looks like this:
 >
 > 八进制（以8为基数）及其亲戚十六进制（以16为基数）都是数字系统，通常
-被用来表示计算机中的数字。我们人类，因为这个事实（或者至少大多数人）天生具有
-十个手指，利用以10为基数的数字系统来计数。计算机，从另一方面讲，生来只有一个
+被用来表示计算机中的数字。我们人类，因为（或者至少大多数人）天生有
+十个手指的事实，利用以10为基数的数字系统来计数。计算机，从另一方面讲，生来只有一个
 手指，因此它以二进制（以2为基数）来计数。它们的数字系统只有两个数值，0和1。
 因此在二进制中，计数看起来像这样：
 >
@@ -448,7 +448,7 @@ green, and eight bits of blue. A lovely medium blue would be a twenty-four digit
 number:
 >
 > 虽然我们能知道二进制的意义（因为计算机只有一个手指），但是八进制和十六进制对什么
-好处呢？ 答案是为了人类的便利。许多时候，在计算机中，一小部分数据以二进制的形式表示。
+有好处呢？ 答案是为了人类的便利。许多时候，在计算机中，一小部分数据以二进制的形式表示。
 以 RGB 颜色为例来说明。大多数的计算机显示器，每个像素由三种颜色组成：8位红色，8位绿色，
 8位蓝色。这样，一种可爱的中蓝色就由24位数字来表示：
 >
@@ -634,7 +634,7 @@ the group and others to read and execute. Multiple specifications may be separat
 </tr>
 <tr>
 <td valign="top">go=rw</td>
-<td valign="top"> 给群组的主人和任意文件拥有者的人读写权限。如果群组的主人或全局之前已经有了执行的权限，他们将被移除。 </td>
+<td valign="top"> 给文件所属的组和文件所属者/组以外的人读写权限。如果文件所属组或其他人已经拥有执行的权限，执行权限将被移除。 </td>
 </tr>
 <tr>
 <td valign="top">u+x,go=rw</td>
@@ -1133,8 +1133,8 @@ tony, who does not. User janet wants to copy a file from her home directory to t
 home directory of user tony. Since user janet wants tony to be able to edit the file,
 janet changes the ownership of the copied file from janet to tony:
 
-比方说，我们有两个用户，janet拥有超级用户访问权限，而 tony 没有。用户 jant 想要从
-她的家目录复制一个文件到用户 tony 的家目录。因为用户 jant 想要 tony 能够编辑这个文件，
+比方说，我们有两个用户，janet拥有超级用户访问权限，而 tony 没有。用户 janet 想要从
+她的家目录复制一个文件到用户 tony 的家目录。因为用户 janet 想要 tony 能够编辑这个文件，
 janet 把这个文件的所有者更改为 tony:
 
     [janet@linuxbox ~]$ sudo cp myfile.txt ~tony

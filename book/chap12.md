@@ -10,10 +10,9 @@ store program settings, some programs will also look for values stored in the en
 to adjust their behavior. Knowing this, we can use the environment to customize our
 shell experience.
 
-恰如我们之前所讨论到的，shell 在 shell 会话中保存着大量的信息，这些信息称为 (shell) 环境。
-存储在 shell 环境中的数据被程序用来确定配置属性。虽然大多数程序用配置文件来存储程序设置，
-某些程序也会查找存储在 shell 环境中的数值来调整他们的行为。知道了这些，我们就可以用 shell 环境
-来自定制 shell 体验。
+恰如我们之前所讲的，shell 在 shell 会话中保存着大量信息。这些信息被称为 (shell 的) 环境。
+程序获取环境中的数据（即环境变量）来了解本机的配置。虽然大多数程序用配置文件来存储程序设置，
+一些程序会根据环境变量来调整他们的行为。知道了这些，我们就可以用环境变量来自定制 shell 体验。
 
 In this chapter, we will work with the following commands:
 
@@ -44,10 +43,10 @@ basically everything else. In addition to variables, the shell also stores some
 programmatic data, namely aliases and shell functions. We covered aliases in Chapter 6,
 and shell functions (which are related to shell scripting) will be covered in Part 5.
 
-shell 在环境中存储了两种基本类型的数据，虽然对于 bash 来说，很大程度上这些类型是不可
-辨别的。它们是环境变量和 shell 变量。Shell 变量是由 bash 存放的少量数据，而剩下的基本上
-都是环境变量。除了变量，shell 也存储了一些可编程的数据，即别名和 shell 函数。我们
-已经在第六章讨论了别名，而 shell 函数（涉及到 shell 脚本）将会在第五部分叙述。
+shell 在环境中存储了两种基本类型的数据，虽然 bash 几乎无法分辨这些数据的类型。
+它们是环境变量和 shell 变量。Shell 变量是 bash 存放的少量数据。剩下的都是
+环境变量。除了变量，shell 也存储了一些可编程的数据，即别名和 shell 函数。我们
+已经在第六章讨论了别名，而 shell 函数（涉及到 shell 脚本）将会在本章第五部分叙述。
 
 ### 检查环境变量
 
@@ -56,9 +55,9 @@ stored in the environment. The set command will show both the shell and environm
 variables, while printenv will only display the latter. Since the list of environment
 contents will be fairly long, it is best to pipe the output of either command into less:
 
-我们可以用 bash 的内建命令 set，或者是 printenv 程序来查看什么存储在环境当中。set 命令可以
-显示 shell 和环境变量两者，而 printenv 只是显示环境变量。因为环境变量内容列表相当长，所以最好
-把每个命令的输出结果管道到 less 命令：
+我们可以用 bash 的内建命令 set，或者是 printenv 程序来查看环境变量。set 命令可以
+显示 shell 或环境变量，而 printenv 只是显示环境变量。因为环境变量列表比较长，最好
+把每个命令的输出通过管道传递给 less 来阅读：
 
     [me@linuxbox ~]$ printenv | less
 
@@ -103,8 +102,8 @@ The set command, when used without options or arguments, will display both the s
 and environment variables, as well as any defined shell functions. Unlike printenv,
 its output is courteously sorted in alphabetical order:
 
-当使用没有带选项和参数的 set 命令时，shell 和环境变量二者都会显示，同时也会显示定义的
-shell 函数。不同于 printenv 命令，set 命令的输出结果很礼貌地按照字母顺序排列：
+当使用没有带选项和参数的 set 命令时，shell 变量，环境变量，和定义的 shell 函数
+都会被显示。不同于 printenv 命令，set 命令的输出很友好地按照首字母顺序排列：
 
     [me@linuxbox ~]$ set | less
 
@@ -118,8 +117,8 @@ It is also possible to view the contents of a variable using the echo command, l
 One element of the environment that neither set nor printenv displays is aliases. To
 see them, enter the alias command without arguments:
 
-如果 shell 环境中的一个成员既不可用 set 命令也不可用 printenv 命令显示，则这个变量是别名。
-输入不带参数的 alias 命令来查看它们:
+别名无法通过使用 set 或 printenv 来查看。
+用不带参数的 alias 来查看别名:
 
     [me@linuxbox ~]$ alias
     alias l.='ls -d .* --color=tty'
@@ -128,14 +127,14 @@ see them, enter the alias command without arguments:
     alias vi='vim'
     alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
 
-### 一些有趣的变量
+### 一些有趣的环境变量
 
 The environment contains quite a few variables, and though your environment may differ
 from the one presented here, you will likely see the following variables in your
 environment:
 
-shell 环境中包含相当多的变量，虽然你的 shell 环境可能不同于这里展示的，但是你可能会看到
-以下变量在你的 shell 环境中：
+shell 环境中包含相当多的变量。虽然你的 shell 环境可能与这里的不同，你可能会看到
+以下的环境变量：
 
 <table class="multi">
 <caption class="cap">Table 12-1: Environment Variables</caption>
@@ -542,8 +541,7 @@ many cases it would be sensible to do so, but for now, let's play it safe.
  .bash_profile 文件中（或者其替代文件中，根据不同的发行版。例如，Ubuntu 使用 .profile 文件）。
 对于其它的更改，要放到 .bashrc 文件中。除非你是系统管理员，需要为系统中的所有用户修改
 默认设置，那么则限定你只能对自己家目录下的文件进行修改。当然，有可能会更改 /etc 目录中的
-文件，比如说 profile 文件，而且在许多情况下，修改这些文件也是明智的，但是现在，我们要
-谨慎行事。
+文件，比如说 profile 文件，而且在许多情况下，修改这些文件也是明智的，但是现在，我们要谨慎行事。
 
 ### 文本编辑器
 
@@ -575,7 +573,7 @@ gedit, which is usually called "Text Editor" in the GNOME menu. KDE usually ship
 with three which are (in order of increasing complexity) kedit, kwrite, and kate.
 
 文本编辑器分为两种基本类型：图形化的和基于文本的编辑器。GNOME 和 KDE 两者都包含一些流行的
-图形编辑器。GNOME 自带了一个叫做 gedit 的编辑器，这个编辑器通常在 GNOME 菜单中称为"文本编辑器"。
+图形化编辑器。GNOME 自带了一个叫做 gedit 的编辑器，这个编辑器通常在 GNOME 菜单中称为"文本编辑器"。
 KDE 通常自带了三种编辑器，分别是（按照复杂度递增的顺序排列）kedit，kwrite，kate。
 
 There are many text-based editors. The popular ones you will encounter are nano, vi,
@@ -629,7 +627,7 @@ are all popular ways of indicating a backup
 file. Oh, and remember that cp will overwrite existing files silently.
 
 备份文件的名字无关紧要，只要选择一个容易理解的文件名。扩展名 ".bak"、".sav"、
-".old"和 ".orig" 都是用来指示备份文件的流行方法。哦，记住 cp 命令会默默地重写存在的文件。
+".old"和 ".orig" 都是用来指示备份文件的流行方法。哦，记住 cp 命令会默默地覆盖已经存在的同名文件。
 
 Now that we have a backup file, we'll start the editor:
 
@@ -667,7 +665,7 @@ o. With this knowledge under our belts, we're ready to do some editing. Using th
 arrow key and / or the PageDown key, move the cursor to the end of the file, then add the
 following lines to the .bashrc file:
 
-第二个我们需要知道的命令是怎样保存我们的劳动成果。对于 nano 来说是 Ctrl-o。尽然我们
+第二个我们需要知道的命令是怎样保存我们的劳动成果。对于 nano 来说是 Ctrl-o。既然我们
 已经获得了这些知识，接下来我们准备做些编辑工作。使用下箭头按键和 / 或下翻页按键，移动
 鼠标到文件的最后一行，然后添加以下几行到文件 .bashrc 中：
 
@@ -680,7 +678,7 @@ following lines to the .bashrc file:
 Note: Your distribution may already include some of these, but duplicates won't
 hurt anything.
 
-注意：你的发行版可能已经包含其中的一些行，但是复制没有任何伤害。
+注意：你的发行版在这之前可能已经包含其中的一些行，出现重复的代码不会有其他影响。
 
 Here is the meaning of our additions:
 
@@ -849,10 +847,10 @@ environment variables that commands support. There may be a gem or two. In later
 chapters, we will learn about shell functions, a powerful feature that you can also include
 in the bash startup files to add to your arsenal of custom commands.
 
-在这一章中，我们学到了用文本编辑器来编辑配置文件的必要技巧。随着继续学习，当我们
-读到命令的手册页时，记录下命令所支持的环境变量。可能会有一个或两个宝贝。在随后的章节
-里面，我们将会学习 shell 函数，一个很强大的特性，你可以把它包含在 bash 启动文件里面，以此
-来添加你自定制的命令宝库。
+在这一章中，我们学到了用文本编辑器来编辑配置文件的基本技巧。随着学习的继续，当我们
+浏览命令的手册页时，可以记录下该命令所支持的环境变量。这样或许我们能够收获一到两个特别好用的宝贝命令。
+在随后的章节里面，我们将会学习 shell 函数，一个很强大的特性，你可以把它包含在 bash 启动文件里面，
+以此来添加你自定制的命令宝库。
 
 ### 拓展阅读
 

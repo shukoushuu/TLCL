@@ -14,7 +14,7 @@ chooses to exit the program.
 在前面的章节中，我们开发了菜单驱动程序，来产生各种各样的系统信息。虽然程序能够运行，
 但它仍然存在重大的可用性问题。它只能执行单一的选择，然后终止。更糟糕地是，如果做了一个
 无效的选择，程序会以错误终止，而没有给用户提供再试一次的机会。如果我们能构建程序，
-以致于程序能够重复显示菜单，而且能一次由一次的选择，直到用户选择退出程序，这样的程序会更好一些。
+以致于程序能够重复显示菜单，而且能一次又一次的选择，直到用户选择退出程序，这样的程序会更好一些。
 
 In this chapter, we will look at a programming concept called looping, which can be used
 to make portions of programs repeat. The shell provides three compound commands for
@@ -248,7 +248,7 @@ chosen and identified, there is no reason to test for the other selections.
 为 while 提供一个退出状态。因为 true 的退出状态总是为零，所以循环永远不会终止。这是一个
 令人惊讶的通用脚本编程技巧。因为循环自己永远不会结束，所以由程序员在恰当的时候提供某种方法来跳出循环。
 此脚本，当选择"0"选项的时候，break 命令被用来退出循环。continue 命令被包含在其它选择动作的末尾，
-为的是更加高效执行。通过使用 continue 命令，当一个选项确定后，程序会跳过不需要的代码。例如，
+来提高程序执行的效率。通过使用 continue 命令，当一个选项确定后，程序会跳过不需执行的其他代码。例如，
 如果选择了选项"1"，则没有理由去测试其它选项。
 
 #### until
@@ -276,8 +276,8 @@ By changing the test expression to `$count -gt 5`, until will terminate the loop
 the correct time. The decision of whether to use the `while` or `until` loop is usually a
 matter of choosing the one that allows the clearest `test` to be written.
 
-通过把 test 表达式更改为 $count -gt 5 ， until 会在正确的时间终止循环。决定使用 while 循环
-还是 until 循环，通常是选择一个 test 可以编写地很清楚的循环。
+通过把 test 表达式更改为 $count -gt 5 ， until 会在正确的时间终止循环。至于使用 while 循环
+还是 until 循环，通常是选择其 test 判断条件最容易写的那种。
 
 ### 使用循环读取文件
 
